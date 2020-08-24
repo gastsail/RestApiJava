@@ -11,12 +11,14 @@ import java.util.List;
 
 public interface IProductoBusiness {
 
-	public Producto load(Long id) throws BusinessException, NotFoundException;
+    Producto load(Long id) throws BusinessException, NotFoundException;
 
-	public List<Producto> list() throws BusinessException;
+    List<Producto> list() throws BusinessException;
 
-	public Producto save(Producto producto) throws BusinessException;
+    Producto save(Producto producto) throws BusinessException;
 
-	public void delete(Long id) throws BusinessException, NotFoundException;
+    void delete(Long id) throws BusinessException, NotFoundException;
+
+    Producto findByDescripcion(String descripcion) throws BusinessException, NotFoundException;
 
 }

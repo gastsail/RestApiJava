@@ -93,5 +93,17 @@ public class ProductosRestController extends BaseRestController {
 		}
 	}
 
+	//curl -X GET  'http://localhost:8080/api/v1/productos/description?desc=arroz%20gallo%20de%20oro'
+	@GetMapping(value = "/description")
+	public ResponseEntity<Producto> loadByDescription(@RequestParam("desc") String desc) {
+		try {
+			return new ResponseEntity<Producto>(productoBusiness.findByDescripcion(desc), HttpStatus.OK);
+		} catch (BusinessException e) {
+			return new ResponseEntity<Producto>(HttpStatus.INTERNAL_SERVER_ERROR);
+		} catch (NotFoundException e) {
+			return new ResponseEntity<Producto>(HttpStatus.NOT_FOUND);
+		}
+	}
+
 	
 }
