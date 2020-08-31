@@ -18,4 +18,5 @@ public interface ProductoRepository extends JpaRepository<Producto, Long> {
     Optional<Producto> findByPrecioListaGreaterThan(Double precio);
     Optional<Producto> findByPrecioListaLessThan(Double precio);
     List<Producto> findAllByOrderByPrecioListaAsc();
+    List<Producto> findAllByDescripcionContaining(String content);
 }

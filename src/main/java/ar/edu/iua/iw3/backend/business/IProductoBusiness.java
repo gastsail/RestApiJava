@@ -27,4 +27,6 @@ public interface IProductoBusiness {
 
     List<Producto> findByPriceAsc() throws BusinessException;
 
+    List<Producto> findAllProductsThatContainsDescription(String content) throws BusinessException;
+
 }

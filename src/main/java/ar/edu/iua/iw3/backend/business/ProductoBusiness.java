@@ -130,4 +130,13 @@ public class ProductoBusiness implements IProductoBusiness {
             throw new BusinessException(e);
         }
     }
+
+    @Override
+    public List<Producto> findAllProductsThatContainsDescription(String content) throws BusinessException {
+        try {
+            return productoDAO.findAllByDescripcionContaining(content);
+        } catch (Exception e) {
+            throw new BusinessException(e);
+        }
+    }
 }
