@@ -4,6 +4,7 @@ import ar.edu.iua.iw3.backend.model.Producto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 // 2 - Creamos un repository con el anotador @Repository que extiende de JpaRepository
@@ -16,4 +17,5 @@ public interface ProductoRepository extends JpaRepository<Producto, Long> {
     Optional<Producto> findByDescripcion(String description);
     Optional<Producto> findByPrecioListaGreaterThan(Double precio);
     Optional<Producto> findByPrecioListaLessThan(Double precio);
+    List<Producto> findAllByOrderByPrecioListaAsc();
 }

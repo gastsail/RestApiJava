@@ -121,4 +121,13 @@ public class ProductoBusiness implements IProductoBusiness {
         }
         return op.get();
     }
+
+    @Override
+    public List<Producto> findByPriceAsc() throws BusinessException {
+        try {
+            return productoDAO.findAllByOrderByPrecioListaAsc();
+        } catch (Exception e) {
+            throw new BusinessException(e);
+        }
+    }
 }

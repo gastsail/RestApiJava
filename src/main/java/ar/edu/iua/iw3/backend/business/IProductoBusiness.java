@@ -25,4 +25,6 @@ public interface IProductoBusiness {
 
     Producto findByPrice(Double price, String condition) throws NotFoundException, BusinessException;
 
+    List<Producto> findByPriceAsc() throws BusinessException;
+
 }

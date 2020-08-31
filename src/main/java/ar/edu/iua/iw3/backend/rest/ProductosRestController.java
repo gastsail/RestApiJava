@@ -119,5 +119,16 @@ public class ProductosRestController extends BaseRestController {
 		}
 	}
 
+
+	//curl -X GET  'http://localhost:8080/api/v1/productos/price/asc'
+	@GetMapping(value = "/price/asc")
+	public ResponseEntity<List<Producto>> getProductListByPriceAsc() {
+		try {
+			return new ResponseEntity<List<Producto>>(productoBusiness.findByPriceAsc(), HttpStatus.OK);
+		} catch (BusinessException e) {
+			return new ResponseEntity<List<Producto>>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
 	
 }
