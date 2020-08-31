@@ -8,11 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
 // 4 - Implementamos la interfaz IProductoBusiness para poder crear la logica de negocio de esos metodos
-// Los métodos que nos devuelve la interfaz son del propio JPA (save, findAll,load,etc)
+// Los métodos que nos devuelve la interfaz son del propio JPA (add, findAll,load,etc)
 // Para saber de todos los métodos podemos hacer ctrl + click en JpaRepository en la interfaz
 
 // Optional sirve para devolver de la base de datos, opcionalmente puede traer el dato, o un error si no lo encuentra
@@ -51,7 +52,7 @@ public class ProductoBusiness implements IProductoBusiness {
     }
 
     @Override
-    public Producto save(Producto producto) throws BusinessException {
+    public Producto add(Producto producto) throws BusinessException {
         try {
             return productoDAO.save(producto);
         } catch (Exception e) {
@@ -68,6 +69,22 @@ public class ProductoBusiness implements IProductoBusiness {
         } catch (Exception e) {
             throw new BusinessException(e);
         }
+    }
+
+    @Override
+    public Producto update(Producto producto) throws NotFoundException, BusinessException {
+        Optional<Producto> op;
+        try {
+            op = productoDAO.findById(producto.getId());
+        } catch (Exception e) {
+            throw new BusinessException(e);
+        }
+
+        if(!op.isPresent()){
+            throw new NotFoundException("No se encontró el producto");
+        }
+
+        return productoDAO.save(producto);
     }
 
     @Override

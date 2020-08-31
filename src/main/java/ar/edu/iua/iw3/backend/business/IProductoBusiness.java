@@ -15,7 +15,9 @@ public interface IProductoBusiness {
 
     List<Producto> list() throws BusinessException;
 
-    Producto save(Producto producto) throws BusinessException;
+    Producto add(Producto producto) throws BusinessException;
+
+    Producto update(Producto producto) throws NotFoundException, BusinessException;
 
     void delete(Long id) throws BusinessException, NotFoundException;
 

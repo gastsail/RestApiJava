@@ -45,7 +45,7 @@ public class ProductosRestController extends BaseRestController {
 	@PostMapping(value = { "" }, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> add(@RequestBody Producto producto) {
 		try {
-			productoBusiness.save(producto);
+			productoBusiness.add(producto);
 			HttpHeaders responseHeaders = new HttpHeaders();
 			responseHeaders.set("location", Constantes.URL_PRODUCTOS + "/" + producto.getId());
 			return new ResponseEntity<String>(responseHeaders, HttpStatus.CREATED);
@@ -59,11 +59,13 @@ public class ProductosRestController extends BaseRestController {
 	@PutMapping(value = { "" }, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> update(@RequestBody Producto producto) {
 		try {
-			productoBusiness.save(producto);
+			productoBusiness.update(producto);
 			return new ResponseEntity<String>(HttpStatus.OK);
 		} catch (BusinessException e) {
 			log.error(e.getMessage(), e);
 			return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
+		} catch (NotFoundException e) {
+			return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
 		}
 	}
 
