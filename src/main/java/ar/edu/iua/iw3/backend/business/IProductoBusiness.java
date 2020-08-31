@@ -23,4 +23,6 @@ public interface IProductoBusiness {
 
     Producto findByDescripcion(String descripcion) throws BusinessException, NotFoundException;
 
+    Producto findByPrice(Double price, String condition) throws NotFoundException, BusinessException;
+
 }

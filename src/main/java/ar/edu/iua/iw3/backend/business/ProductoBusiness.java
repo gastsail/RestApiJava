@@ -80,7 +80,7 @@ public class ProductoBusiness implements IProductoBusiness {
             throw new BusinessException(e);
         }
 
-        if(!op.isPresent()){
+        if (!op.isPresent()) {
             throw new NotFoundException("No se encontró el producto");
         }
 
@@ -95,6 +95,27 @@ public class ProductoBusiness implements IProductoBusiness {
         } catch (Exception e) {
             throw new BusinessException(e);
         }
+        if (!op.isPresent()) {
+            throw new NotFoundException();
+        }
+        return op.get();
+    }
+
+    @Override
+    public Producto findByPrice(Double price, String condition) throws NotFoundException, BusinessException {
+        Optional<Producto> op = null;
+
+        try {
+
+            switch (condition){
+                case "mayor" : op = productoDAO.findByPrecioListaGreaterThan(price);break;
+                case "menor":  op = productoDAO.findByPrecioListaLessThan(price);break;
+            }
+
+        } catch (Exception e) {
+            throw new BusinessException(e);
+        }
+
         if (!op.isPresent()) {
             throw new NotFoundException();
         }
