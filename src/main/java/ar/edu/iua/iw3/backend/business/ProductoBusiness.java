@@ -139,4 +139,13 @@ public class ProductoBusiness implements IProductoBusiness {
             throw new BusinessException(e);
         }
     }
+
+    @Override
+    public List<Producto> findAllByNombreStartingWith(String name) throws BusinessException {
+        try {
+            return productoDAO.findAllByNombreStartingWith(name);
+        } catch (Exception e) {
+            throw new BusinessException(e);
+        }
+    }
 }

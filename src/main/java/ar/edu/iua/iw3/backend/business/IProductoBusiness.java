@@ -12,21 +12,14 @@ import java.util.List;
 public interface IProductoBusiness {
 
     Producto load(Long id) throws BusinessException, NotFoundException;
-
     List<Producto> list() throws BusinessException;
-
     Producto add(Producto producto) throws BusinessException;
-
     Producto update(Producto producto) throws NotFoundException, BusinessException;
-
     void delete(Long id) throws BusinessException, NotFoundException;
-
     Producto findByDescripcion(String descripcion) throws BusinessException, NotFoundException;
-
     Producto findByPrice(Double price, String condition) throws NotFoundException, BusinessException;
-
     List<Producto> findByPriceAsc() throws BusinessException;
-
     List<Producto> findAllProductsThatContainsDescription(String content) throws BusinessException;
+    List<Producto> findAllByNombreStartingWith(String name) throws BusinessException;
 
 }

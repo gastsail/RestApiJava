@@ -141,5 +141,16 @@ public class ProductosRestController extends BaseRestController {
 		}
 	}
 
+
+	//curl -X GET  'http://localhost:8080/api/v1/productos?name="A"
+	@GetMapping(value = "")
+	public ResponseEntity<List<Producto>> getProductListStartingWith(@RequestParam("name") String name) {
+		try {
+			return new ResponseEntity<List<Producto>>(productoBusiness.findAllByNombreStartingWith(name), HttpStatus.OK);
+		} catch (BusinessException e) {
+			return new ResponseEntity<List<Producto>>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
 	
 }
