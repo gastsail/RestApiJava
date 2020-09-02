@@ -107,6 +107,16 @@ public class ProductosRestController extends BaseRestController {
 		}
 	}
 
+	//curl -X GET  'http://localhost:8080/api/v1/productos/desc?contains="leche'
+	@GetMapping(value = "/desc")
+	public ResponseEntity<List<Producto>> getProductListByContainingDescription(@RequestParam("contains") String content) {
+		try {
+			return new ResponseEntity<List<Producto>>(productoBusiness.findAllProductsThatContainsDescription(content), HttpStatus.OK);
+		} catch (BusinessException e) {
+			return new ResponseEntity<List<Producto>>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
 	//curl -X GET  'http://localhost:8080/api/v1/productos/price?price=200&condition=mayor'
 	@GetMapping(value = "/price")
 	public ResponseEntity<Producto> getProductByPrice(@RequestParam("price") Double price,@RequestParam("condition") String condition) {
@@ -131,15 +141,7 @@ public class ProductosRestController extends BaseRestController {
 	}
 
 
-	//curl -X GET  'http://localhost:8080/api/v1/productos/desc?contains="leche'
-	@GetMapping(value = "/desc")
-	public ResponseEntity<List<Producto>> getProductListByContainingDescription(@RequestParam("contains") String content) {
-		try {
-			return new ResponseEntity<List<Producto>>(productoBusiness.findAllProductsThatContainsDescription(content), HttpStatus.OK);
-		} catch (BusinessException e) {
-			return new ResponseEntity<List<Producto>>(HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-	}
+
 
 
 	//curl -X GET  'http://localhost:8080/api/v1/productos?name="A"

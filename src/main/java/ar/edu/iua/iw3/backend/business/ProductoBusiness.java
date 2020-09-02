@@ -73,18 +73,8 @@ public class ProductoBusiness implements IProductoBusiness {
 
     @Override
     public Producto update(Producto producto) throws NotFoundException, BusinessException {
-        Optional<Producto> op;
-        try {
-            op = productoDAO.findById(producto.getId());
-        } catch (Exception e) {
-            throw new BusinessException(e);
-        }
-
-        if (!op.isPresent()) {
-            throw new NotFoundException("No se encontró el producto");
-        }
-
-        return productoDAO.save(producto);
+        load(producto.getId());
+        return add(producto);
     }
 
     @Override
