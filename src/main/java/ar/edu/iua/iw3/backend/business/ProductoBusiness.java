@@ -53,6 +53,7 @@ public class ProductoBusiness implements IProductoBusiness {
 
     @Override
     public Producto add(Producto producto) throws BusinessException {
+    	//Lo que tengo que cambiar es aqui   <------------------------------------------------
         try {
             return productoDAO.save(producto);
         } catch (Exception e) {

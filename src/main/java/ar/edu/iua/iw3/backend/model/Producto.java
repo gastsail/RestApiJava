@@ -23,7 +23,18 @@ public class Producto implements Serializable {
     @Column(columnDefinition = "TINYINT DEFAULT 0")
     private boolean enStock;
 
-    public Long getId() {
+    @OneToOne(cascade =  CascadeType.ALL)
+    private ProductoDetalle productoDetalle;
+
+	public ProductoDetalle getProductoDetalle() {
+		return productoDetalle;
+	}
+
+	public void setProductoDetalle(ProductoDetalle productoDetalle) {
+		this.productoDetalle = productoDetalle;
+	}
+
+	public Long getId() {
         return id;
     }
 

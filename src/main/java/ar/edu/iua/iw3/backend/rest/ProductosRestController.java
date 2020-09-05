@@ -41,7 +41,8 @@ public class ProductosRestController extends BaseRestController {
 		}
 	}
 
-	// curl -X POST "http://localhost:8080/api/v1/productos" -H "Content-Type: application/json" -d '{"nombre":"Arroz","descripcion":"Arroz que no se pasa","precioLista":89.56,"enStock":true}' -v
+	//MODIFICANDO
+	// curl -X POST "http://localhost:8080/api/v1/productos" -H "Content-Type: application/json" -d '{"nombre":"Arroz","descripcion":"Arroz que no se pasa","precioLista":89.56,"enStock":true, "ProductoDetalle":'{"detalle":"Light"}'}' -v
 	@PostMapping(value = { "" }, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> add(@RequestBody Producto producto) {
 		try {
