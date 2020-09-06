@@ -53,7 +53,6 @@ public class ProductoBusiness implements IProductoBusiness {
 
     @Override
     public Producto add(Producto producto) throws BusinessException {
-    	//Lo que tengo que cambiar es aqui   <------------------------------------------------
         try {
             return productoDAO.save(producto);
         } catch (Exception e) {
@@ -93,8 +92,8 @@ public class ProductoBusiness implements IProductoBusiness {
     }
 
     @Override
-    public Producto findByPrice(Double price, String condition) throws NotFoundException, BusinessException {
-        Optional<Producto> op = null;
+    public List<Producto> findByPrice(Double price, String condition) throws NotFoundException, BusinessException {
+        Optional<List<Producto>> op = null;
 
         try {
 

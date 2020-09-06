@@ -41,8 +41,7 @@ public class ProductosRestController extends BaseRestController {
 		}
 	}
 
-	//MODIFICANDO
-	// curl -X POST "http://localhost:8080/api/v1/productos" -H "Content-Type: application/json" -d '{"nombre":"Arroz","descripcion":"Arroz que no se pasa","precioLista":89.56,"enStock":true, "ProductoDetalle":'{"detalle":"Light"}'}' -v
+	// curl -X POST "http://localhost:8080/api/v1/productos" -H "Content-Type: application/json" -d '{"nombre":"Arroz","descripcion":"Arroz que no se pasa","precioLista":89.56,"enStock":true, "productoDetalle":'{"detalle":"Light"}'}' -v
 	@PostMapping(value = { "" }, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> add(@RequestBody Producto producto) {
 		try {
@@ -120,16 +119,15 @@ public class ProductosRestController extends BaseRestController {
 
 	//curl -X GET  'http://localhost:8080/api/v1/productos/price?price=200&condition=mayor'
 	@GetMapping(value = "/price")
-	public ResponseEntity<Producto> getProductByPrice(@RequestParam("price") Double price,@RequestParam("condition") String condition) {
+	public ResponseEntity<List<Producto>> getProductByPrice(@RequestParam("price") Double price,@RequestParam("condition") String condition) {
 		try {
-			return new ResponseEntity<Producto>(productoBusiness.findByPrice(price,condition), HttpStatus.OK);
+			return new ResponseEntity<List<Producto>>(productoBusiness.findByPrice(price,condition), HttpStatus.OK);
 		} catch (BusinessException e) {
-			return new ResponseEntity<Producto>(HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<List<Producto>>(HttpStatus.INTERNAL_SERVER_ERROR);
 		} catch (NotFoundException e) {
-			return new ResponseEntity<Producto>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<List<Producto>>(HttpStatus.NOT_FOUND);
 		}
 	}
-
 
 	//curl -X GET  'http://localhost:8080/api/v1/productos/price/asc'
 	@GetMapping(value = "/price/asc")
@@ -140,10 +138,6 @@ public class ProductosRestController extends BaseRestController {
 			return new ResponseEntity<List<Producto>>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-
-
-
-
 
 	//curl -X GET  'http://localhost:8080/api/v1/productos?name="A"
 	@GetMapping(value = "")

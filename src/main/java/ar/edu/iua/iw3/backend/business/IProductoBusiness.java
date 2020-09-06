@@ -17,7 +17,7 @@ public interface IProductoBusiness {
     Producto update(Producto producto) throws NotFoundException, BusinessException;
     void delete(Long id) throws BusinessException, NotFoundException;
     Producto findByDescripcion(String descripcion) throws BusinessException, NotFoundException;
-    Producto findByPrice(Double price, String condition) throws NotFoundException, BusinessException;
+    List<Producto> findByPrice(Double price, String condition) throws NotFoundException, BusinessException;
     List<Producto> findByPriceAsc() throws BusinessException;
     List<Producto> findAllProductsThatContainsDescription(String content) throws BusinessException;
     List<Producto> findAllByNombreStartingWith(String name) throws BusinessException;

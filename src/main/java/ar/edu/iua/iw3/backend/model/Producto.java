@@ -26,6 +26,12 @@ public class Producto implements Serializable {
     @OneToOne(cascade =  CascadeType.ALL)
     private ProductoDetalle productoDetalle;
 
+    //La relación con proveedor es asi, un proveedor puede tener varios productos, al estar parados en producto decimos que many productos tienen one proveedor
+    //el joinColumn es la columna que se va a crear en Producto que va a almacenar el ID del proveedor de ese producto
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "proveedor_id")
+    private Proveedor proveedor;
+
 	public ProductoDetalle getProductoDetalle() {
 		return productoDetalle;
 	}
@@ -74,4 +80,11 @@ public class Producto implements Serializable {
         this.enStock = enStock;
     }
 
+    public Proveedor getProveedor() {
+        return proveedor;
+    }
+
+    public void setProveedor(Proveedor proveedor) {
+        this.proveedor = proveedor;
+    }
 }
