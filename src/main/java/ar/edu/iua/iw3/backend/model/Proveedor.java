@@ -24,6 +24,7 @@ public class Proveedor implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(length = 100, nullable=true)
     private String name;
 
     @OneToMany(targetEntity = Producto.class,mappedBy = "proveedor",fetch = FetchType.LAZY)

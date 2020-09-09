@@ -31,7 +31,16 @@ public class Producto implements Serializable {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "proveedor_id")
     private Proveedor proveedor;
-
+    
+    //En esta relacion de muchos a muchos se crea una tabla intermedia cuya clave principal esta formada por las claves principales de las tablas que 
+    // une.
+    /*@ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(name = "producto_ingrediente_detalle",
+            joinColumns = @JoinColumn(name = "producto_id"),
+            inverseJoinColumns = @JoinColumn(name = "ingrediente_id"))
+    private List<Ingrediente> ingredienteList;
+*/
+    
 	public ProductoDetalle getProductoDetalle() {
 		return productoDetalle;
 	}
