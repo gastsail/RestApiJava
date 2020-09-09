@@ -9,7 +9,7 @@
 		<version>2.3.2.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>ar.edu.iua</groupId>
+	<groupId>ar.edu.iua.iw3.backend</groupId>
 	<artifactId>iw3</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>backend</name>
