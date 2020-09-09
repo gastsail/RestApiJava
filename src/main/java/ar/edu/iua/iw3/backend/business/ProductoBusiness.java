@@ -72,9 +72,28 @@ public class ProductoBusiness implements IProductoBusiness {
     }
 
     @Override
-    public Producto update(Producto producto) throws NotFoundException, BusinessException {
-        load(producto.getId());
-        return add(producto);
+    public Producto update(Producto producto, Long id) throws NotFoundException, BusinessException {
+        Producto op;
+        try {
+    	op = load(id);
+        } catch(Exception e) {
+        	throw new BusinessException(e);
+        }
+        
+    	if(producto.getNombre()!=null){
+    		op.setNombre(producto.getNombre());
+    	}
+    	if(producto.getDescripcion()!=null){
+    		op.setDescripcion(producto.getDescripcion());
+    	}
+    	if(producto.getPrecioLista()!=0){
+    		op.setPrecioLista(producto.getPrecioLista());
+    	}
+    	if(producto.getProveedor()!=null){
+    		op.setProveedor(producto.getProveedor());
+    	}
+    	op.setEnStock(producto.isEnStock());
+    	return add(op);
     }
 
     @Override
