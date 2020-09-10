@@ -79,7 +79,6 @@ public class ProductoBusiness implements IProductoBusiness {
         } catch(Exception e) {
         	throw new BusinessException(e);
         }
-        
     	if(producto.getNombre()!=null){
     		op.setNombre(producto.getNombre());
     	}
@@ -93,7 +92,11 @@ public class ProductoBusiness implements IProductoBusiness {
     		op.setProveedor(producto.getProveedor());
     	}
     	op.setEnStock(producto.isEnStock());
+    	if(producto.getProductoDetalle()!=null) {
+    		op.setProductoDetalle(producto.getProductoDetalle());
+    	}
     	return add(op);
+    	
     }
 
     @Override
