@@ -1,6 +1,7 @@
 package ar.edu.iua.iw3.backend.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerator;
@@ -13,11 +14,11 @@ import java.util.List;
 // JsonIdentityInfo hace que no se genere un bucle infinito cuando agregamos un proveedor al producto, ya que al agregarlo
 // el proveedor tiene una lista de productos y se vuelve a llamar, por lo que genera un bucle infinito
 
-@Entity
-@Table(name = "proveedor")
-@JsonIgnoreProperties({"hibernateLazyinItializer","handler"})
-@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class,property = "id")
-public class Proveedor implements Serializable {
+	@Entity
+	@Table(name = "proveedor")
+	@JsonIgnoreProperties({"hibernateLazyinItializer","handler"})
+	@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class,property = "id")
+	public class Proveedor implements Serializable {
 
 
     @Id
@@ -28,6 +29,7 @@ public class Proveedor implements Serializable {
     private String name;
 
     @OneToMany(targetEntity = Producto.class,mappedBy = "proveedor",fetch = FetchType.LAZY)
+    @JsonBackReference
     private List<Producto> productoList;
 
     public Long getId() {

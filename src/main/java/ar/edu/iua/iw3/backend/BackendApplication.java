@@ -14,17 +14,18 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BackendApplication extends SpringBootServletInitializer{
-
+public class BackendApplication implements CommandLineRunner{
+	// Luego al hacer le jar o war para enpaquetado ponerlo arriba en la clase ---> "extends SpringBootServletInitializer"
 	public static void main(String[] args) {
 		SpringApplication.run(BackendApplication.class, args);
 	}
 
+	
 	@Autowired
 	private IDefaultData defaultData;
 	
-	public void run(String...args) throws Exception {
+	public void run(String... args) throws Exception {
 		defaultData.mensaje();
 	}
-	
+		
 }

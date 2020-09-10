@@ -1,6 +1,10 @@
 package ar.edu.iua.iw3.backend.model;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import java.io.Serializable;
 
 // 1 - Punto de partida, definimos el modelo , creamos esta entidad con el nombre de la tabla y sus anotadores correspondientes
@@ -28,6 +32,8 @@ public class Producto implements Serializable {
 
     //La relación con proveedor es asi, un proveedor puede tener varios productos, al estar parados en producto decimos que many productos tienen one proveedor
     //el joinColumn es la columna que se va a crear en Producto que va a almacenar el ID del proveedor de ese producto
+    
+    @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="id")
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "proveedor_id")
     private Proveedor proveedor;
