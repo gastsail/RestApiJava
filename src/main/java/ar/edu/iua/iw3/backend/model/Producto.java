@@ -2,6 +2,7 @@ package ar.edu.iua.iw3.backend.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 // 1 - Punto de partida, definimos el modelo , creamos esta entidad con el nombre de la tabla y sus anotadores correspondientes
 
@@ -34,12 +35,11 @@ public class Producto implements Serializable {
     
     //En esta relacion de muchos a muchos se crea una tabla intermedia cuya clave principal esta formada por las claves principales de las tablas que 
     // une.
-    /*@ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name = "producto_ingrediente_detalle",
+    @ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(name = "producto_venta_detalle",
             joinColumns = @JoinColumn(name = "producto_id"),
-            inverseJoinColumns = @JoinColumn(name = "ingrediente_id"))
-    private List<Ingrediente> ingredienteList;
-*/
+            inverseJoinColumns = @JoinColumn(name = "venta_id"))
+    private List<Venta> ventaList;
     
 	public ProductoDetalle getProductoDetalle() {
 		return productoDetalle;
