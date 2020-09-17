@@ -100,8 +100,8 @@ public class ProductoBusiness implements IProductoBusiness {
     }
 
     @Override
-    public Producto findByDescripcion(String descripcion) throws BusinessException, NotFoundException {
-        Optional<Producto> op;
+    public List<Producto> findByDescripcion(String descripcion) throws BusinessException, NotFoundException {
+        Optional<List<Producto>> op;
         try {
             op = productoDAO.findByDescripcion(descripcion);
         } catch (Exception e) {

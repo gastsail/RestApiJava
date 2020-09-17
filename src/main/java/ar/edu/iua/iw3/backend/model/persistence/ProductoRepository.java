@@ -14,7 +14,7 @@ import java.util.Optional;
 @Repository
 public interface ProductoRepository extends JpaRepository<Producto, Long> {
 
-    Optional<Producto> findByDescripcion(String description);
+    Optional<List<Producto>> findByDescripcion(String description);
     Optional<List<Producto>> findByPrecioListaGreaterThan(Double precio);
     Optional<List<Producto>> findByPrecioListaLessThan(Double precio);
     List<Producto> findAllByOrderByPrecioListaAsc();

@@ -97,23 +97,17 @@ public class ProductosRestController extends BaseRestController {
 
 	//curl -X GET  'http://localhost:8080/api/v1/productos/description?desc=arroz%20gallo%20de%20oro'
 	@GetMapping(value = "/description")
-	public ResponseEntity<Producto> loadByDescription(@RequestParam("desc") String desc) {
+	public ResponseEntity<List<Producto>> loadByDescription(@RequestParam(value = "desc",required = false) String desc,@RequestParam(value = "contains",required = false,defaultValue = "") String content) {
 		try {
-			return new ResponseEntity<Producto>(productoBusiness.findByDescripcion(desc), HttpStatus.OK);
-		} catch (BusinessException e) {
-			return new ResponseEntity<Producto>(HttpStatus.INTERNAL_SERVER_ERROR);
-		} catch (NotFoundException e) {
-			return new ResponseEntity<Producto>(HttpStatus.NOT_FOUND);
-		}
-	}
-
-	//curl -X GET  'http://localhost:8080/api/v1/productos/desc?contains="leche'
-	@GetMapping(value = "/desc")
-	public ResponseEntity<List<Producto>> getProductListByContainingDescription(@RequestParam("contains") String content) {
-		try {
-			return new ResponseEntity<List<Producto>>(productoBusiness.findAllProductsThatContainsDescription(content), HttpStatus.OK);
+			if(!content.isEmpty()){
+				return new ResponseEntity<List<Producto>>(productoBusiness.findAllProductsThatContainsDescription(content), HttpStatus.OK);
+			}else{
+				return new ResponseEntity<List<Producto>>(productoBusiness.findByDescripcion(desc), HttpStatus.OK);
+			}
 		} catch (BusinessException e) {
 			return new ResponseEntity<List<Producto>>(HttpStatus.INTERNAL_SERVER_ERROR);
+		} catch (NotFoundException e) {
+			return new ResponseEntity<List<Producto>>(HttpStatus.NOT_FOUND);
 		}
 	}
 
