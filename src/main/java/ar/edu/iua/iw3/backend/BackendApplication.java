@@ -19,12 +19,5 @@ public class BackendApplication extends SpringBootServletInitializer{
 	public static void main(String[] args) {
 		SpringApplication.run(BackendApplication.class, args);
 	}
-
-	@Autowired
-	private IDefaultData defaultData;
-	
-	public void run(String...args) throws Exception {
-		defaultData.mensaje();
-	}
 	
 }
