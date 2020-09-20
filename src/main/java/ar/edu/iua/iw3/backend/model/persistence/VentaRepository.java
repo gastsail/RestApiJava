@@ -10,8 +10,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface VentaRepository extends JpaRepository<Venta, Long>{
-
-	List<Producto> findAllByNombreStartingWith(Long id);
 	
 	//Traer todas las ventas del producto 1
 	//SELECT * FROM ventas v inner join producto_venta_detalle pvd

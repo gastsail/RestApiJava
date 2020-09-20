@@ -9,5 +9,10 @@ import ar.edu.iua.iw3.backend.model.Venta;
 
 public interface IVentaBusiness {
 
-	public List<Producto>getAllVentasForProduct(long idProducto) throws NotFoundException, BusinessException;
+	List<Producto> listAllVentasForProduct(long idProducto) throws NotFoundException, BusinessException;
+    List<Venta> list() throws BusinessException;
+    Venta load(Long id) throws BusinessException, NotFoundException;
+	Venta addVenta(Venta venta) throws BusinessException;
+	Venta update(Venta venta, Long id) throws NotFoundException, BusinessException;
+	void delete(Long id) throws BusinessException, NotFoundException;
 }

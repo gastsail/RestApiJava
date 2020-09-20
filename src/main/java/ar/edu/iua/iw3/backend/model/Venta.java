@@ -39,11 +39,11 @@ public class Venta implements Serializable {
         this.id = id;
     }
 
-    public String getNombre() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setNombre(String nombre) {
+    public void setFecha(String nombre) {
         this.fecha = nombre;
     }
 }
