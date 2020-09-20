@@ -6,7 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import ar.edu.iua.iw3.backend.model.Producto;
 import ar.edu.iua.iw3.backend.model.Venta;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface VentaRepository extends JpaRepository<Venta, Long>{
 
 	List<Producto> findAllByNombreStartingWith(Long id);

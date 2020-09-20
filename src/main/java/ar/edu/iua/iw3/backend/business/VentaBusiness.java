@@ -9,7 +9,9 @@ import ar.edu.iua.iw3.backend.business.exception.NotFoundException;
 import ar.edu.iua.iw3.backend.model.Producto;
 import ar.edu.iua.iw3.backend.model.Venta;
 import ar.edu.iua.iw3.backend.model.persistence.VentaRepository;
+import org.springframework.stereotype.Service;
 
+@Service
 public class VentaBusiness implements IVentaBusiness{
 
 	@Autowired
