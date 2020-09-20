@@ -10,5 +10,11 @@ import ar.edu.iua.iw3.backend.model.Venta;
 public interface VentaRepository extends JpaRepository<Venta, Long>{
 
 	List<Producto> findAllByNombreStartingWith(Long id);
+	
 	//Traer todas las ventas del producto 1
+	//SELECT * FROM ventas v inner join producto_venta_detalle pvd
+	//on v.id = pvd.venta_id inner join productos p
+	//on pvd.producto_id = p.id
+	//where p.id= '1'
+	//order by v.fecha;
 }
