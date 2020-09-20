@@ -59,7 +59,17 @@ public class VentaBusiness implements IVentaBusiness{
 
     @Override
 	public Venta update(Venta venta, Long id) throws NotFoundException, BusinessException {
-		return null;
+        Venta op;
+        try {
+            op = load(id);
+        } catch(Exception e) {
+            throw new NotFoundException(e);
+        }
+        if(venta.getFecha()!=null){
+            op.setFecha(venta.getFecha());
+        }
+
+        return addVenta(op);
 	}
 
 	@Override

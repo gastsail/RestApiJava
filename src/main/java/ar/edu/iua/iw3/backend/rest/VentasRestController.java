@@ -75,6 +75,20 @@ public class VentasRestController extends BaseRestController {
         }
     }
 
+    @SuppressWarnings("Duplicates")
+    @PutMapping(value = { "/{id}" }, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> update(@RequestBody Venta venta, @PathVariable("id") Long id) {
+        try {
+            ventaBusiness.update(venta, id);
+            return new ResponseEntity<String>(HttpStatus.OK);
+        } catch (BusinessException e) {
+            log.error(e.getMessage(), e);
+            return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (NotFoundException e) {
+            return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
+        }
+    }
+
     //localhost:8080/api/v1/ventas/producto?idProducto=1
 	@GetMapping(value = { "/producto" }, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Producto>> listAllVentasForProduct(@RequestParam ("idProducto") Long id) {
