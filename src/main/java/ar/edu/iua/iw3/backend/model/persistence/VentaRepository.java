@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface VentaRepository extends JpaRepository<Venta, Long>{
 	
+	List<Venta> findByProductoListId(Long id);
 	//Traer todas las ventas del producto 1
 	//SELECT * FROM ventas v inner join producto_venta_detalle pvd
 	//on v.id = pvd.venta_id inner join productos p

@@ -2,6 +2,8 @@ package ar.edu.iua.iw3.backend.business;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+
 import ar.edu.iua.iw3.backend.business.exception.BusinessException;
 import ar.edu.iua.iw3.backend.business.exception.NotFoundException;
 import ar.edu.iua.iw3.backend.model.Producto;
@@ -9,7 +11,8 @@ import ar.edu.iua.iw3.backend.model.Venta;
 
 public interface IVentaBusiness {
 
-	List<Producto> listAllVentasForProduct(long idProducto) throws NotFoundException, BusinessException;
+	//List<Producto> listAllVentasForProduct(long idProducto) throws NotFoundException, BusinessException;
+	List<Venta> findByProductoListId(Long id) throws NotFoundException, BusinessException;
     List<Venta> list() throws BusinessException;
     Venta load(Long id) throws BusinessException, NotFoundException;
 	Venta addVenta(Venta venta) throws BusinessException;

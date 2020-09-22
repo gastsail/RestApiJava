@@ -88,7 +88,7 @@ public class VentasRestController extends BaseRestController {
             return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
         }
     }
-
+/*
     //localhost:8080/api/v1/ventas/producto?idProducto=1
 	@GetMapping(value = { "/producto" }, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Producto>> listAllVentasForProduct(@RequestParam ("idProducto") Long id) {
@@ -100,6 +100,30 @@ public class VentasRestController extends BaseRestController {
 		}catch (NotFoundException e) {
 			return new ResponseEntity<List<Producto>>(HttpStatus.NOT_FOUND);
 		}
-	}
-	
+	}*/
+		//Get que nos trae las ventas segun el id de producto pasado
+		//localhost:8080/api/v1/ventas/producto?idProducto=1
+		@GetMapping(value = { "/producto" }, produces = MediaType.APPLICATION_JSON_VALUE)
+		public ResponseEntity<List<Venta>> findByProductoListId(@RequestParam ("idProducto") Long id) {
+			try {
+				return new ResponseEntity<List<Venta>>(ventaBusiness.findByProductoListId(id),HttpStatus.OK);
+			} catch (BusinessException e) {
+				log.error(e.getMessage(), e);
+				return new ResponseEntity<List<Venta>>(HttpStatus.INTERNAL_SERVER_ERROR);
+			}catch (NotFoundException e) {
+				return new ResponseEntity<List<Venta>>(HttpStatus.NOT_FOUND);
+			}
+		}
+		
+		
+		/*@GetMapping(value = { "" }, produces = MediaType.APPLICATION_JSON_VALUE)
+	    public ResponseEntity<List<Venta>> findByProductoListId() {
+	        try {
+	            return new ResponseEntity<List<Venta>>(ventaBusiness.list(), HttpStatus.OK);
+	        } catch (BusinessException e) {
+	            log.error(e.getMessage(), e);
+	            return new ResponseEntity<List<Venta>>(HttpStatus.INTERNAL_SERVER_ERROR);
+	        }
+	    }
+	    */
 }

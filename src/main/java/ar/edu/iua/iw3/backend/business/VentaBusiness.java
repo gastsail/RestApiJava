@@ -18,13 +18,29 @@ public class VentaBusiness implements IVentaBusiness{
 
 	@Autowired
 	private VentaRepository ventaDAO;
-
+/*
 	@Override
 	public List<Producto> listAllVentasForProduct(long idProducto) throws NotFoundException, BusinessException {
-		// TODO Auto-generated method stub
+		
+		String sql = "SELECT * FROM ventas v "
+				+ "inner join producto_venta_detalle pvd on v.id = pvd.venta_id "
+				+ "inner join productos p on pvd.producto_id = p.id where p.id= '1' "
+				+ "order by v.fecha";
+
+		Query query = em.createNativeQuery(sql, User.class);
+		query.setParameter(1, id);
+		User user = (User) query.getSingleResult();
 		return null;
 	}
-
+*/
+	@Override
+	public List<Venta> findByProductoListId(Long id) throws BusinessException, NotFoundException{
+			try {
+				return ventaDAO.findByProductoListId(id);
+			} catch (Exception e) {
+				throw new BusinessException(e);
+			}
+		}
 
 	@Override
 	public Venta addVenta(Venta venta) throws BusinessException {
