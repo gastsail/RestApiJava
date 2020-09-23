@@ -96,6 +96,9 @@ public class ProductoBusiness implements IProductoBusiness {
     	if(producto.getProductoDetalle()!=null) {
     		op.setProductoDetalle(producto.getProductoDetalle());
     	}
+    	if(producto.getVentaList()!=null) {
+    		op.setVentaList(producto.getVentaList());
+    	}
     	return add(op);
     	
     }
