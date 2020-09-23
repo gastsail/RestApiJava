@@ -21,5 +21,5 @@ public interface IProductoBusiness {
     List<Producto> findByPriceAsc() throws BusinessException;
     List<Producto> findAllProductsThatContainsDescription(String content) throws BusinessException;
     List<Producto> findAllByNombreStartingWith(String name) throws BusinessException;
-
+	List<Producto> findByVentaListId(Long id) throws BusinessException, NotFoundException;
 }

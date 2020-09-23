@@ -3,6 +3,7 @@ package ar.edu.iua.iw3.backend.business;
 import ar.edu.iua.iw3.backend.business.exception.BusinessException;
 import ar.edu.iua.iw3.backend.business.exception.NotFoundException;
 import ar.edu.iua.iw3.backend.model.Producto;
+import ar.edu.iua.iw3.backend.model.Venta;
 import ar.edu.iua.iw3.backend.model.persistence.ProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -160,4 +161,13 @@ public class ProductoBusiness implements IProductoBusiness {
             throw new BusinessException(e);
         }
     }
+    
+    @Override
+	public List<Producto> findByVentaListId(Long id) throws BusinessException, NotFoundException{
+		try {
+			return productoDAO.findByVentaListId(id);
+		} catch (Exception e) {
+			throw new BusinessException(e);
+			}
+	}
 }

@@ -4,6 +4,8 @@ import ar.edu.iua.iw3.backend.business.IProductoBusiness;
 import ar.edu.iua.iw3.backend.business.exception.BusinessException;
 import ar.edu.iua.iw3.backend.business.exception.NotFoundException;
 import ar.edu.iua.iw3.backend.model.Producto;
+import ar.edu.iua.iw3.backend.model.Venta;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -143,6 +145,20 @@ public class ProductosRestController extends BaseRestController {
 			return new ResponseEntity<List<Producto>>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	
+	//Get que nos trae los Productos segun el id de Venta pasado
+	//localhost:8080/api/v1/producto/venta?idVenta=1
+			@GetMapping(value = { "/venta" }, produces = MediaType.APPLICATION_JSON_VALUE)
+			public ResponseEntity<List<Producto>> findByVentaListId(@RequestParam ("idVenta") Long id) {
+				try {
+					return new ResponseEntity<List<Producto>>(productoBusiness.findByVentaListId(id),HttpStatus.OK);
+				} catch (BusinessException e) {
+					log.error(e.getMessage(), e);
+					return new ResponseEntity<List<Producto>>(HttpStatus.INTERNAL_SERVER_ERROR);
+				}catch (NotFoundException e) {
+					return new ResponseEntity<List<Producto>>(HttpStatus.NOT_FOUND);
+				}
+			}
 
 	
 }
