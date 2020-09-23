@@ -41,6 +41,14 @@ public class Producto implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "venta_id"))
     private List<Venta> ventaList;
     
+	public List<Venta> getVentaList() {
+		return ventaList;
+	}
+
+	public void setVentaList(List<Venta> ventaList) {
+		this.ventaList = ventaList;
+	}
+
 	public ProductoDetalle getProductoDetalle() {
 		return productoDetalle;
 	}
