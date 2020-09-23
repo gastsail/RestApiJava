@@ -159,6 +159,5 @@ public class ProductosRestController extends BaseRestController {
 					return new ResponseEntity<List<Producto>>(HttpStatus.NOT_FOUND);
 				}
 			}
-
 	
 }
