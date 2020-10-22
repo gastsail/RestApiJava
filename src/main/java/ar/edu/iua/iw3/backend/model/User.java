@@ -86,7 +86,8 @@ public class User implements Serializable{
 	
 	@Column(length = 100)
 	private String password;
-	
+
+/*
 	@ManyToOne
 	@JoinColumn(name="id_rol_principal")
 	private Rol rolPrincipal;
@@ -99,7 +100,7 @@ public class User implements Serializable{
 	public void setRolPrincipal(Rol rolPrincipal) {
 		this.rolPrincipal = rolPrincipal;
 	}
-
+	
 	@ManyToMany
 	@JoinTable(name="users_roles", 
 		joinColumns= {@JoinColumn(name="id_user", referencedColumnName = "id")}, 
@@ -114,4 +115,5 @@ public class User implements Serializable{
 	public void setRoles(Set<Rol> roles) {
 		this.roles = roles;
 	}
+*/
 }

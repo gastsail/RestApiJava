@@ -1,6 +1,9 @@
 package ar.edu.iua.iw3.backend.model;
 
 import javax.persistence.*;
+
+import ar.edu.iua.iw3.backend.model.Ingrediente;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -40,6 +43,12 @@ public class Producto implements Serializable {
             joinColumns = @JoinColumn(name = "producto_id"),
             inverseJoinColumns = @JoinColumn(name = "venta_id"))
     private List<Venta> ventaList;
+    
+    @ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(name = "producto_ingrediente_detalle",
+            joinColumns = @JoinColumn(name = "producto_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "ingrediente_id", referencedColumnName = "id"))
+    private List<Ingrediente> ingredienteList;
     
 	public List<Venta> getVentaList() {
 		return ventaList;

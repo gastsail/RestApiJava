@@ -1,4 +1,4 @@
-package ar.edu.iua.iw3.backend.model;
+/*package ar.edu.iua.iw3.backend.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -44,4 +44,4 @@ public class Rol {
 		this.descripcion = descripcion;
 	}
 	
-}
+}*/
