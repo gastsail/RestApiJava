@@ -2,7 +2,7 @@ package ar.edu.iua.iw3.backend.model;
 
 import javax.persistence.*;
 
-import ar.edu.iua.iw3.backend.model.Ingrediente;
+import ar.edu.iua.iw3.backend.model.Ingredientes;
 
 import java.io.Serializable;
 import java.util.List;
@@ -48,7 +48,7 @@ public class Producto implements Serializable {
     @JoinTable(name = "producto_ingrediente_detalle",
             joinColumns = @JoinColumn(name = "producto_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "ingrediente_id", referencedColumnName = "id"))
-    private List<Ingrediente> ingredienteList;
+    private List<Ingredientes> ingredienteList;
     
 	public List<Venta> getVentaList() {
 		return ventaList;
