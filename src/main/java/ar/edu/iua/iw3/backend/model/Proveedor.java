@@ -10,15 +10,9 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
-
-@Entity
-@Table(name = "proveedor")
-@JsonIgnoreProperties({"hibernateLazyinItializer","handler"})
-@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class,property = "id")
-
 // ------- Usa el constructor de una clase nueva llamada ProveedorDTO--------------------
 //-------------LO QUE SE MUESTRA A CONTINUACION (SqlResultSetMapping) ES EL MAPEO ENTRE LA RESPUESTA DE LA BASE DE DATOS Y EL DTO--
-@NamedNativeQuery(name = "Proveedor.soloNombre", query = "select proveedor.name from proveedor where id = ?1", resultSetMapping = "proveedorMap")
+@NamedNativeQuery(name = "Proveedor.verNombre", query = "select proveedor.name from proveedor where id = ?1", resultSetMapping = "proveedorMap")
 @SqlResultSetMapping(
        name="proveedorMap",
        classes = {
@@ -31,7 +25,10 @@ import java.util.List;
        }
 )
 
-
+@Entity
+@Table(name = "proveedor")
+@JsonIgnoreProperties({"hibernateLazyinItializer","handler"})
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class,property = "id")
 public class Proveedor implements Serializable {
 
 	private static final long serialVersionUID = 2047686961507729289L;

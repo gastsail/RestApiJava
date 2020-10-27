@@ -1,9 +1,6 @@
 package ar.edu.iua.iw3.backend.model;
 
 import javax.persistence.*;
-
-import ar.edu.iua.iw3.backend.model.Ingredientes;
-
 import java.io.Serializable;
 import java.util.List;
 

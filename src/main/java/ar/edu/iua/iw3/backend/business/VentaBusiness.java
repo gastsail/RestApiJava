@@ -9,6 +9,7 @@ import ar.edu.iua.iw3.backend.business.exception.BusinessException;
 import ar.edu.iua.iw3.backend.business.exception.NotFoundException;
 import ar.edu.iua.iw3.backend.model.Producto;
 import ar.edu.iua.iw3.backend.model.Venta;
+import ar.edu.iua.iw3.backend.model.VentaDTO;
 import ar.edu.iua.iw3.backend.model.persistence.VentaRepository;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,15 @@ public class VentaBusiness implements IVentaBusiness{
 			}
 		}
 
+	@Override
+	public List<VentaDTO> soloNombre(String nombre) throws BusinessException{
+			try {
+				return ventaDAO.soloNombre(nombre);
+			} catch (Exception e) {
+				throw new BusinessException(e);
+			}
+		}
+	
 	@Override
 	public Venta addVenta(Venta venta) throws BusinessException {
 		try {

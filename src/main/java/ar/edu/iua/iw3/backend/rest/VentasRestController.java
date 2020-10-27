@@ -3,8 +3,9 @@ package ar.edu.iua.iw3.backend.rest;
 import ar.edu.iua.iw3.backend.business.IVentaBusiness;
 import ar.edu.iua.iw3.backend.business.exception.BusinessException;
 import ar.edu.iua.iw3.backend.business.exception.NotFoundException;
-import ar.edu.iua.iw3.backend.model.Producto;
 import ar.edu.iua.iw3.backend.model.Venta;
+import ar.edu.iua.iw3.backend.model.VentaDTO;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -102,5 +103,16 @@ public class VentasRestController extends BaseRestController {
 				return new ResponseEntity<List<Venta>>(HttpStatus.NOT_FOUND);
 			}
 		}
+		//http://localhost:8080/api/v1/ventas/buscar_nombre?nombre=Arroz
+		@GetMapping(value = "/buscar_nombre")
+	    public ResponseEntity<List<VentaDTO>> loadPrecio(@RequestParam("nombre") String n) {
+	        try {
+	            return new ResponseEntity<List<VentaDTO>>(ventaBusiness.soloNombre(n), HttpStatus.OK);
+	        } catch (BusinessException e) {
+	            return new ResponseEntity<List<VentaDTO>>(HttpStatus.INTERNAL_SERVER_ERROR);
+	        } catch (NotFoundException e) {
+	            return new ResponseEntity<List<VentaDTO>>(HttpStatus.NOT_FOUND);
+	        }
+	    }
 		
 }

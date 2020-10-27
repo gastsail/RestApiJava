@@ -7,7 +7,24 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.io.Serializable;
 import java.util.List;
 
-// 1 - Punto de partida, definimos el modelo , creamos esta entidad con el nombre de la tabla y sus anotadores correspondientes
+//Aqui definimos la Query con nombre + el DTO para responder a la consulta:
+//Una query por nombre + DTO para devolver las ventas cuyo producto tenga el nombre X, 
+//mostrando sólo la fecha de la venta.
+@NamedNativeQuery(name = "Venta.soloNombre", query = "select v.fecha from ventas v inner join "
+		+ "producto_venta_detalle pvd on v.id = pvd.venta_id inner join productos p "
+		+ "on pvd.producto_id = p.id where p.nombre = ?1", resultSetMapping = "ventamap")
+@SqlResultSetMapping(
+       name="ventamap",
+       classes = {
+               @ConstructorResult(
+                       columns = {
+                               @ColumnResult(name = "v.fecha", type = String.class),
+                       },
+                       targetClass = VentaDTO.class
+               )
+       }
+)
+
 
 @Entity
 @Table(name = "ventas")
